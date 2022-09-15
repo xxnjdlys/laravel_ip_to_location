@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\IPController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
@@ -17,3 +18,19 @@ use Illuminate\Support\Facades\Route;
 Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
     return $request->user();
 });
+
+Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
+    return $request->user();
+});
+Route::group([
+    'middleware' => 'api',
+], function ($router) {
+    $router->get('get/location', [IPCOntroller::class, 'IPLocation']);
+//    Route::get('get/ip', [IPCOntroller::class, 'getIp']);
+//    Route::post('get/ip', [IPCOntroller::class, 'getIp']);
+//    Route::any('get/ip', [IPCOntroller::class, 'getIp']);
+});
+
+
+
+
